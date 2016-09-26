@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <time.h>
+#include <omp.h>
 
 #include "primitives.h"
 #include "raytracing.h"
@@ -64,5 +65,11 @@ int main()
     free(pixels);
     printf("Done!\n");
     printf("Execution time of raytracing() : %lf sec\n", diff_in_second(start, end));
+    
+//write the time in file
+    FILE* file = fopen("output_lu.txt","a");
+    fprintf(file,"%f\n",diff_in_second(start, end));
+    fclose(file);
+    
     return 0;
 }

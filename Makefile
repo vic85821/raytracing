@@ -20,11 +20,11 @@ OBJS := \
 	main.o
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -fopenmp -c -o $@ $<
 
 
 $(EXEC): $(OBJS)
-	$(CC) -o $@ $^ $(LDFLAGS)
+	$(CC) -fopenmp -o $@ $^ $(LDFLAGS)
 
 main.o: use-models.h
 use-models.h: models.inc Makefile
@@ -44,4 +44,4 @@ check: $(EXEC)
 
 clean:
 	$(RM) $(EXEC) $(OBJS) use-models.h \
-		out.ppm gmon.out
+		out.ppm gmon.out 
